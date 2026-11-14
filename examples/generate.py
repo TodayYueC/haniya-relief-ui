@@ -1,7 +1,7 @@
 """Generate generic Relief UI example mockups (SVG) from the design tokens."""
 import os, math
 
-OUT = r'D:\Haniya\HaniyaApps\haniya-relief-ui\examples'
+OUT = os.path.dirname(os.path.abspath(__file__))  # writes the SVGs next to this script
 os.makedirs(OUT, exist_ok=True)
 
 LIGHT = dict(bg='#E6EAF1', face_hi='#F1F3F7', face_lo='#E2E6EE', hi='#FFFFFF', hi_a=.95, sh='#A9B5C9', sh_a=.55,
