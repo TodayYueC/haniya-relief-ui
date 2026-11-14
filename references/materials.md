@@ -39,3 +39,6 @@ CSS (Platinum Mist card):
   box-shadow:-4px -4px 11px #FFFFFFE6, 3.5px 6px 14px #8487F16B, inset 2px 2px 6px #FFFFFF66;}
 ```
 SwiftUI: stack `.shadow(color: .white, radius: 9, x: -7, y: -7)` and `.shadow(color: shade.opacity(0.55), radius: 9, x: 7, y: 7)` (SwiftUI radius ≈ half of blur). Flutter: `BoxDecoration(boxShadow: [BoxShadow(color: white, offset: Offset(-7,-7), blurRadius: 18), BoxShadow(color: shade.withOpacity(.55), offset: Offset(7,7), blurRadius: 18)])`.
+
+### Dark-theme pitfall (banding)
+On dark backgrounds the highlight shadow is only a few 8-bit levels lighter than `bg`. Blurred over a short distance, renderers (browsers, some GPUs) quantize it into visible concentric light rings — it looks like ghosting around every card. In dark themes use a **shorter highlight offset (≈ 0.5×) with a wider blur (≈ 1.6×)**, keep the inset highlight faint (≤ 0.25), set `color-interpolation-filters="sRGB"` for SVG filters, and drop the faint second "graphite" stroke on icons.
